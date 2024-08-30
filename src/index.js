@@ -1,15 +1,8 @@
-import _ from 'lodash'; 
+import './style-reset.css';
 import './style.css';
+import './style-large.css';
+import './style-medium.css';
 
-import printMe from './print.js';
+import { homepage } from './homepage.js';
 
-function component() {
-    const element = document.createElement('div');
-  
-     // Lodash, now imported by this script   
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+homepage();
