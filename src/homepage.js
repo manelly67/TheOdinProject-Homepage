@@ -1,16 +1,44 @@
 import imageSmall from './assets/img/photo-small-size.jpg';
 import imageMedium from './assets/img/photo-medium-size.jpg';
 import imageLarge from './assets/img/photo-large-size.jpg';
+import changeTheme from './assets/img/theme-light-dark.png';
 import { textContentAboutMe } from './assets/text-content';
 import { github,linkedin } from './assets/icons-source';
 
+
 function homepage(){
+
+const root = document.documentElement;
+root.setAttribute('id','root-element');
+root.className='light';
 
 const flashMessages = document.createElement('div');
 flashMessages.setAttribute('id','flash-messages');
 
+const themeButton = document.createElement('button');
+themeButton.classList.add('themeButton');
+const themeButtonImg = document.createElement('img');
+const changeThemeImg = new Image();
+changeThemeImg.src = changeTheme;
+themeButtonImg.setAttribute('src', changeThemeImg.src);
+themeButtonImg.setAttribute('alt','theme-light-dark');
+themeButtonImg.classList.add('iconImg');
+themeButton.setAttribute('style','border-radius: 30px;');
+themeButton.addEventListener("click", () => {
+    setTheme();
+})
+
+function setTheme() {
+    const newTheme = root.className === 'dark' ? 'light' : 'dark';
+    root.className = newTheme;
+  }
+
+
+// background colors
 const bgDivFirst = document.createElement('div');
 bgDivFirst.classList.add('bgDivFirst');
+const bgDivSecond = document.createElement('div');
+bgDivSecond.classList.add('bgDivSecond');
 
 const pageContainer = document.createElement('div');
 pageContainer.classList.add('page-container');
@@ -51,7 +79,6 @@ const linkedinLink = document.createElement('a');
 const linkedinIcon = document.createElement('img');
 aboutMe.classList.add('content');
 aboutMeHeading.textContent = 'About me';
-aboutMeHeading.classList.add('sectionTitle');
 aboutMeText.textContent = textContentAboutMe;
 aboutMeText.classList.add('text');
 aboutMeIcons.classList.add('divIcons');
@@ -70,19 +97,34 @@ linkedinIcon.setAttribute('src', linkedinImg.src);
 linkedinIcon.setAttribute('alt','Linkedin');
 linkedinIcon.classList.add('iconImg');
 
+// projects content
 const main = document.createElement('main');
+const contentHeading = document.createElement('H2');
 const content = document.createElement('section');
+content.classList.add('contentProject');
 
-const bgDivSecond = document.createElement('div');
+contentHeading.textContent = 'My work';
+const amountOfProjects = 6;
+for (let i = 0; i < amountOfProjects; i++) {
+    const project = document.createElement('article');
+    project.setAttribute('id', `project${i+1}`);
+    content.appendChild(project);
+}
 
 
+
+
+// footer
 const footer = document.createElement('footer');
 
 
 
 document.body.appendChild(flashMessages);
+document.body.appendChild(themeButton);
 document.body.appendChild(bgDivFirst);
 document.body.appendChild(bgDivSecond);
+
+themeButton.appendChild(themeButtonImg);
 bgDivFirst.appendChild(pageContainer);
 bgDivSecond.appendChild(footer);
 pageContainer.appendChild(header);
@@ -101,8 +143,10 @@ githubLink.appendChild(githubIcon);
 aboutMeIcons.appendChild(linkedinLink);
 linkedinLink.appendChild(linkedinIcon);
 
-
+main.appendChild(contentHeading);
 main.appendChild(content);
+
+
 
 }
 

@@ -5,15 +5,18 @@
     }
 
     .textInPhoto{
-    /*     position: absolute;
-        
-        top: 33%; */
         font-size: 5.6rem;
     }
     
+    .themeButton{
+        position: absolute;
+        top: 3%;
+        right: 3%;
+        z-index: 1;
+    }
+
     .page-container > header {
         width: 80%;
-        background-color: #d9c9c8;
         padding-left: 10%;
         padding-right: 10%;
         padding-top: 2%;
@@ -22,6 +25,15 @@
         flex-direction: row;
         justify-content: center;      
        }
+
+    .page-container > main {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 1fr;  
+       } 
+
 
     .content {
         justify-content: center;
@@ -33,5 +45,34 @@
         justify-content: center;
         gap:10px;
     }
+
+    main > H2 {
+        grid-row: 1/2;
+        padding-left: 4%;
+        font-size: 2.5rem;
+    }
+
+    .contentProject {
+        grid-row: 2/3;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+    article {
+        --defining-width: calc(0.82 * (100vw/3)) ;
+        width: var(--defining-width);
+        height: calc(var(--defining-width)*1.1);
+        border-radius: 6px;
+    }
+
+    footer {
+        --define-height-footer:calc(0.40*100vh);
+        width: 100%;
+        height: var(--define-height-footer);
+       }
 
  }
