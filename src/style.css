@@ -139,7 +139,7 @@ h2 {
 article {
     --defining-width: calc(0.70 * 100vw) ;
     width: var(--defining-width);
-    height: calc(var(--defining-width)*0.7);
+    height: calc(var(--defining-width)*0.9);
     border-radius: 6px;
     box-shadow: var(--color-article-shadow) 2px 2px 4px 2px;
 }
@@ -188,7 +188,6 @@ article {
 .divDescriptionArticle > p {
     color: var(--color-base-text-article);
     font-size: 1rem;
-    font-weight: 900;
     padding-left: 4%;
 }
 
