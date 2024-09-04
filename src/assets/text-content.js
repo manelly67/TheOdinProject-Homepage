@@ -8,6 +8,13 @@ import { Project} from './class-project';
 
 const textContentAboutMe = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
 
+const textContentContactMe = 'If you think my work fits what you need, call or write to me.';
+const phoneText = '123-4567-890';
+const mailText = 'my.email.adress@gmail.com';
+
+const githubAccount = 'https://github.com/manelly67';
+const linkedinAccount = 'https://www.linkedin.com/in/marianellylopez';
+
 const project1 = new Project('project1');
 project1.projectName = 'Project1 Name';
 project1.projectDescription = 'Short description of the project1. Just a couple sentences will do.';
@@ -53,4 +60,5 @@ project6.projectNewWindow = 'https://manelly67.github.io/TheOdinProject-WeatherA
 const arrayProjects = [project1,project2,project3,project4,project5,project6];
 
           
-export {textContentAboutMe, arrayProjects};
+export {textContentAboutMe, arrayProjects, textContentContactMe, phoneText, 
+        mailText, githubAccount, linkedinAccount};

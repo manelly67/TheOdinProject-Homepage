@@ -4,6 +4,19 @@ width: 100vw;
 margin: auto;
 }
 
+.playfair-display-unique {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
 .photoImg {
     width: 100%;
     object-fit: cover;
@@ -18,8 +31,7 @@ margin: auto;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 6px 6px 0px 0px;
-    
+    border-radius: 6px 6px 0px 0px;   
 }
 
 /* define background colors - starts*/
@@ -62,8 +74,9 @@ article {
     background-color: var(--color-bg-article);
 }
 
-.bgDivSecond {
-    background-color: var(--color-bg-second);
+.bgDivSecond {    /*footer*/
+   background-color: var(--color-bg-second);
+   color: var(--color-base-text);
 }
 
 /* define background colors end */
@@ -71,7 +84,7 @@ article {
 .page-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0.7fr 2.5fr;  
+    grid-template-rows: 0.7fr 3fr;  
 }
 
 .page-container > header {
@@ -209,15 +222,73 @@ article {
 .divIcons {
     display:flex;
     flex-direction: row;
-    justify-content:flex-end;
     gap:10px;
     padding-bottom: 2%;
 }
 
 footer {
- --define-height-footer:calc(0.4*100vh);
+ --define-height-footer:calc(0.7*100vh);
  width: 100%;
  height: var(--define-height-footer);
+}
+
+footer {
+ width: 100%;
+ margin-left: auto;
+ margin-right: auto;
+ padding-top: 2%;
+ padding-bottom: 2%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 10px;
+}
+
+footer > section {
+ height: 100%;
+ width: 90%;
+ display: grid;
+ grid-template-columns: 1fr 1fr 7fr;
+ grid-template-rows: 1fr 1.2fr 1fr 1fr 1fr;
+}
+
+footer > section > h2 {
+    grid-row: 1/2;
+    grid-column: 1/4;
+}
+
+footer > section > h2 + p {
+    grid-row: 2/3;
+    grid-column: 1/4;
+    row-gap: 1.1;
+}
+footer > section > h2 + p + p {
+    grid-row: 3/4;
+    grid-column: 3/4;
+}
+footer > section > h2 + p + p + p {
+    grid-row: 4,5;
+    grid-column: 3/4;
+}
+footer > section > img {
+    grid-row:3/4; grid-column:1/2;
+}
+footer > section > img + img {
+    grid-row:4/5; grid-column:1/2;
+}
+footer > section > div {
+    grid-row:5/6; grid-column:1/4;
+}
+footer > section > div {
+   display:flex; flex-direction: row; 
+   justify-content: center; gap: 10px;
+}
+
+
+.photoFooter {
+    width: auto;
+    height: 250px;
+    object-fit: cover;
 }
 
 /*buttons*/

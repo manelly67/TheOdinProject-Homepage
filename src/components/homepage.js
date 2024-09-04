@@ -1,11 +1,17 @@
-import imageSmall from './assets/img/photo-small-size.jpg';
-import imageMedium from './assets/img/photo-medium-size.jpg';
-import imageLarge from './assets/img/photo-large-size.jpg';
-import changeTheme from './assets/img/theme-light-dark.png';
-import externalLink from './assets/img/open-in-new.png';
-import { textContentAboutMe } from './assets/text-content';
-import { arrayProjects } from './assets/text-content';
-import { github,linkedin } from './assets/icons-source';
+import imageSmall from '../assets/img/photo-small-size.jpg';
+import imageMedium from '../assets/img/photo-medium-size.jpg';
+import imageLarge from '../assets/img/photo-large-size.jpg';
+import photoFooter from '../assets/img/photo-footer.png';
+import changeTheme from '../assets/img/theme-light-dark.png';
+import externalLink from '../assets/img/open-in-new.png';
+import emailIcon from '../assets/img/email-outline.png';
+import phoneIcon from '../assets/img/phone-dial-outline.png';
+import { textContentAboutMe } from '../assets/text-content';
+import { githubAccount, linkedinAccount } from '../assets/text-content';
+import { textContentContactMe, phoneText, mailText } from '../assets/text-content';
+import { arrayProjects } from '../assets/text-content';
+import { github,linkedin } from '../assets/icons-source';
+import { insertImg } from './insertImg';
 
 function homepage(){
 
@@ -13,17 +19,16 @@ const root = document.documentElement;
 root.setAttribute('id','root-element');
 root.className='light';
 
+document.body.className='playfair-display-unique';
+
 const flashMessages = document.createElement('div');
 flashMessages.setAttribute('id','flash-messages');
 
 const themeButton = document.createElement('button');
 themeButton.classList.add('themeButton');
-const themeButtonImg = document.createElement('img');
 const changeThemeImg = new Image();
 changeThemeImg.src = changeTheme;
-themeButtonImg.setAttribute('src', changeThemeImg.src);
-themeButtonImg.setAttribute('alt','theme-light-dark');
-themeButtonImg.classList.add('iconImg');
+insertImg(themeButton,changeThemeImg.src,'theme-light-dark','iconImg');
 themeButton.setAttribute('style','border-radius: 30px;');
 themeButton.addEventListener("click", () => {
     setTheme();
@@ -72,28 +77,23 @@ const aboutMeHeading = document.createElement('H2');
 const aboutMeText = document.createElement('p');
 const aboutMeIcons = document.createElement('div');
 const githubLink = document.createElement('a');
-const githubIcon = document.createElement('img');
 const linkedinLink = document.createElement('a');
-const linkedinIcon = document.createElement('img');
+
 aboutMe.classList.add('content');
 aboutMeHeading.textContent = 'About me';
 aboutMeText.textContent = textContentAboutMe;
 aboutMeText.classList.add('text');
 aboutMeIcons.classList.add('divIcons');
-githubLink.setAttribute('href','https://github.com/manelly67');
+githubLink.setAttribute('href',githubAccount);
 githubLink.setAttribute('target','_blank');
 const githubImg = new Image();
 githubImg.src = github;
-linkedinLink.setAttribute('href','https://www.linkedin.com/in/marianellylopez');
+insertImg(githubLink,githubImg.src,'Github','iconImg');
+linkedinLink.setAttribute('href',linkedinAccount);
 linkedinLink.setAttribute('target','_blank');
 const linkedinImg = new Image();
 linkedinImg.src = linkedin;
-githubIcon.setAttribute('src', githubImg.src);
-githubIcon.setAttribute('alt', 'Github');
-githubIcon.classList.add('iconImg');
-linkedinIcon.setAttribute('src', linkedinImg.src);
-linkedinIcon.setAttribute('alt','Linkedin');
-linkedinIcon.classList.add('iconImg');
+insertImg(linkedinLink,linkedinImg.src,'Linkedin','iconImg');
 
 // PROJECTS CONTENT
 const main = document.createElement('main');
@@ -115,37 +115,23 @@ const iterator = projectsInDiv.entries();
 projectsInDiv.forEach(() => {
     let index = iterator.next().value;
     let x = index[1];
-    console.log(x.getAttribute('id'));
     const div1 = document.createElement('div');
-    const img = document.createElement('img');
-    const screenshot = new Image();
-    img.setAttribute('src', mySmallImg.src);
-    img.setAttribute('alt','');
     div1.classList.add('divImgArticle');
-    img.classList.add('photoImg');
+    const screenshot = new Image();
     const div2 = document.createElement('div');
-    const name = document.createElement('h3');
-    const links = document.createElement('div');
     div2.classList.add('divNameArticle');
+    const name = document.createElement('h3');
     name.setAttribute('style','grid-column:1/2');
+    const links = document.createElement('div');
     links.setAttribute('style','grid-column:2/3');
     const githubLink = document.createElement('a');
     githubLink.setAttribute('target','_blank');
-    const githubIcon = document.createElement('img');
-    const githubImg = new Image();
-    githubImg.src = github;
-    githubIcon.classList.add('iconImg');
-    githubIcon.setAttribute('src',githubImg.src);
-    githubIcon.setAttribute('alt','github');
+    insertImg(githubLink,githubImg.src,'github','iconImg');
     const newWindowLink = document.createElement('a');
     newWindowLink.setAttribute('target','_blank');
-    const newWindowIcon = document.createElement('img');
     const newWindowImg = new Image();
     newWindowImg.src = externalLink;
-    newWindowIcon.classList.add('iconImg');
-    newWindowIcon.setAttribute('src',newWindowImg.src);
-    newWindowIcon.setAttribute('alt','new-window');
-
+    insertImg(newWindowLink,newWindowImg.src,'new-window','iconImg');
     const div3 = document.createElement('div');
     div3.classList.add('divDescriptionArticle');
     const description = document.createElement('p');
@@ -154,9 +140,7 @@ projectsInDiv.forEach(() => {
         switch(e.id===x.getAttribute('id')){
             case true:
             screenshot.src=e.screenshotProjectSource;
-            img.setAttribute('src', screenshot.src);
-            img.setAttribute('alt',`screenshot ${e.id}`);
-            img.classList.add('projectImg');
+            insertImg(div1,screenshot.src,`screenshot ${e.id}`,'projectImg');
             name.textContent= e.projectName;
             githubLink.setAttribute('href',e.githubHref);
             newWindowLink.setAttribute('href',e.projectNewWindow);
@@ -170,27 +154,53 @@ projectsInDiv.forEach(() => {
     x.appendChild(div1);
     x.appendChild(div2);
     x.appendChild(div3);
-    div1.appendChild(img);
     div2.appendChild(name);
     div2.appendChild(links);
     links.appendChild(githubLink);
-    githubLink.appendChild(githubIcon);
     links.appendChild(newWindowLink);
-    newWindowLink.appendChild(newWindowIcon);
     div3.appendChild(description);
 })
 
 // FOOTER
 const footer = document.createElement('footer');
+const contactMe = document.createElement('section');
+const contactMeHeading = document.createElement('H2');
+const contactMeText = document.createElement('p');
+const phoneNumber = document.createElement('p');
+const mailAddress = document.createElement('p');
+contactMeHeading.textContent = 'Contact me';
+contactMeText.textContent = textContentContactMe;
+phoneNumber.textContent = phoneText;
+mailAddress.textContent = mailText;
+const phoneImg = new Image();
+phoneImg.src = phoneIcon;
+insertImg(contactMe,phoneImg.src,'phone','iconImg');
+const emailImg = new Image();
+emailImg.src = emailIcon;
+insertImg(contactMe,emailImg.src,'email-address','iconImg');
+const contactMeIcons = document.createElement('div');
+const contactMegithubLink = document.createElement('a');
+const contactMelinkedinLink = document.createElement('a');
+contactMegithubLink.setAttribute('href',githubAccount);
+contactMegithubLink.setAttribute('target','_blank');
+insertImg(contactMegithubLink,githubImg.src,'Github','iconImg');
+contactMelinkedinLink.setAttribute('href',linkedinAccount);
+contactMelinkedinLink.setAttribute('target','_blank');
+insertImg(contactMelinkedinLink,linkedinImg.src,'Linkedin','iconImg');
 
 
+const imgFooter = document.createElement('img');
+const photoMNL = new Image();
+photoMNL.src = photoFooter;
+imgFooter.classList.add('photoFooter');
+imgFooter.setAttribute('src', photoMNL.src);
+imgFooter.setAttribute('alt','portfolio owner');
 
 document.body.appendChild(flashMessages);
 document.body.appendChild(themeButton);
 document.body.appendChild(bgDivFirst);
 document.body.appendChild(bgDivSecond);
 
-themeButton.appendChild(themeButtonImg);
 bgDivFirst.appendChild(pageContainer);
 bgDivSecond.appendChild(footer);
 pageContainer.appendChild(header);
@@ -205,17 +215,22 @@ aboutMe.appendChild(aboutMeHeading);
 aboutMe.appendChild(aboutMeText);
 aboutMe.appendChild(aboutMeIcons);
 aboutMeIcons.appendChild(githubLink);
-githubLink.appendChild(githubIcon);
 aboutMeIcons.appendChild(linkedinLink);
-linkedinLink.appendChild(linkedinIcon);
 
 main.appendChild(contentHeading);
 main.appendChild(content);
 
-
+footer.appendChild(contactMe);
+footer.appendChild(imgFooter);
+contactMe.appendChild(contactMeHeading);
+contactMe.appendChild(contactMeText);
+contactMe.appendChild(phoneNumber);
+contactMe.appendChild(mailAddress);
+contactMe.appendChild(contactMeIcons);
+contactMeIcons.appendChild(contactMegithubLink);
+contactMeIcons.appendChild(contactMelinkedinLink);
 
 }
-
 
 
 export {homepage};
