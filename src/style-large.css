@@ -18,7 +18,7 @@
     .page-container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 0.7fr 2.8fr;  
+        grid-template-rows: 0.7fr 2.6fr;  
     }
 
     .page-container > header {
@@ -95,6 +95,7 @@
 
     footer {
         width: 80%;
+        height: 100%;
         padding-left: 10%;
         padding-right: 10%;
         padding-top: 2%;
